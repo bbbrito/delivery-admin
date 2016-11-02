@@ -1,15 +1,15 @@
 <app-notification class="alert-fixed"></app-notification>
 
 <aside class="sidebar {{ $root.isOpenMenu ? 'is-open' : 'is-closed'}}">
-  <div class="sidebar-full" ng-include="'/_layout/sidebar.html'"></div>
+  <div class="sidebar-full" data-ng-include="'/_layout/sidebar.html'"></div>
 </aside><!-- .sidebar -->
 
-<main class="main {{ $root.isOpenMenu ? 'is-open' : 'is-closed'}}" ng-click="closeMenu($event)">
-  <div ng-include="'/_layout/header.html'"></div>
+<main class="main {{ $root.isOpenMenu ? 'is-open' : 'is-closed'}}" data-ng-click="closeMenu($event)">
+  <div data-ng-include="'/_layout/header.html'"></div>
 
-    <p class="alert alert-success" ng-if="vm.alert">
+    <p class="alert alert-success" data-ng-if="vm.alert">
       <strong>Success!</strong> Indicates a successful or positive action.
     </p>
 
-  <article class="content" ui-view id="view"></article>
+  <article class="content" data-ui-view id="view"></article>
 </main><!-- .main -->

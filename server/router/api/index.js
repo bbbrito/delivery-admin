@@ -10,5 +10,6 @@ router.use('/orders', require('./orders'));
 router.use('/postalcodes', require('./postalcodes'));
 router.use('/products', require('./products'));
 router.use('/referencePoints', require('./referencePoints'));
+router.use('/reports', require('./reports'));
 
 module.exports = router;

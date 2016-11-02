@@ -36,11 +36,10 @@
   </thead>
   <tbody>
     <tr class="pointer"
-      ng-repeat="order in vm.data.items"
-      ng-click="state.go('app.order', { id: order._id })">
-      <td>{{ order.customer.givenName }}</td>
-      <td>{{ order.payment.total | currency }}</td>
-      <td>{{ order.delivery.date | date:'dd/MM/yyyy HH:mm' }}</td>
+      ng-repeat="order in vm.data.items">
+      <td ng-click="state.go('app.order', { id: order._id })">{{ order.customer.givenName }}</td>
+      <td ng-click="state.go('app.order', { id: order._id })">{{ order.payment.total | currency }}</td>
+      <td ng-click="state.go('app.order', { id: order._id })">{{ order.delivery.date | date:'dd/MM HH:mm' }}</td>
       <td><i class="fa fa-trash" ng-click="vm.remove($event, order)"></i></td>
     </tr>
   </tbody>

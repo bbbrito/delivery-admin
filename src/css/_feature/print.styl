@@ -1,25 +1,12 @@
 @media print
   body, html
     height auto
+    margin 0
+    padding 0
 
-  body
+  .order-print
     font-family Menlo,Monaco,Consolas,"Courier New",monospace;
-    font-size 16px
-    min-height auto
-    word-break normal
-    word-wrap normal
-    white-space nowrap
-
-  td
-    word-break normal
-    word-wrap normal
-    white-space nowrap
-
-
-  .main
-    width 100%
-    display block
-
+    font-size 14px
 
   form,
   .sidebar,
@@ -27,17 +14,17 @@
   .main .header
     display none
 
-
   .row
     margin 0
-
 
   .col-md-12,
   .content
     padding 0
+    float none
 
-
-  .order-print-table
-    width 100%
-
-
+  .main
+  .content
+  .order-print
+    display block
+    max-width 99% !important
+    width 99% !important

@@ -1,4 +1,4 @@
-<a class="sidebar-image-wrapper logo" ui-sref="app.dashboard" href="#/dashboard">
+<a class="sidebar-image-wrapper logo" data-ui-sref="app.dashboard" href="#/dashboard">
     <img src="/assets/images/logo-strudel-folhadinho-vertical.png" alt="Strudel Folhadinho" />
 </a>
 
@@ -6,8 +6,8 @@
 
     <li class="sidebar-item">
         <a
-        ng-class="{'is-active': state.current.name.includes('app.dashboard')}"
-        ui-sref="app.dashboard"
+        data-ng-class="{'is-active': state.current.name.includes('app.dashboard')}"
+        data-ui-sref="app.dashboard"
         href="#/dashboard"
         class="sidebar-link">
             <span class="sidebar-icon">
@@ -19,9 +19,9 @@
 
     <li class="sidebar-item">
         <a
-          ng-class="{'is-active': state.current.name.includes('app.customer')}"
+          data-ng-class="{'is-active': state.current.name.includes('app.customer')}"
           href="#/customers"
-          ui-sref="app.customers"
+          data-ui-sref="app.customers"
           class="sidebar-link">
 
             <span class="sidebar-icon">
@@ -33,8 +33,8 @@
 
     <li class="sidebar-item">
         <a
-        ng-class="{'is-active': state.current.name.includes('app.product')}"
-        ui-sref="app.products"
+        data-ng-class="{'is-active': state.current.name.includes('app.product')}"
+        data-ui-sref="app.products"
         href="#/products"
         class="sidebar-link">
             <span class="sidebar-icon">
@@ -46,8 +46,8 @@
 
     <li class="sidebar-item">
         <a
-        ng-class="{'is-active': state.current.name.includes('app.order')}"
-        ui-sref="app.orders"
+        data-ng-class="{'is-active': state.current.name.includes('app.order')}"
+        data-ui-sref="app.orders"
         href="#/orders"
         class="sidebar-link">
             <span class="sidebar-icon">
@@ -59,8 +59,8 @@
 
     <li class="sidebar-item">
         <a
-        ng-class="{'is-active': state.current.name == 'app.map'}"
-        ui-sref="app.map"
+        data-ng-class="{'is-active': state.current.name == 'app.map'}"
+        data-ui-sref="app.map"
         href="#/map"
         class="sidebar-link">
             <span class="sidebar-icon">
@@ -70,9 +70,9 @@
         </a>
     </li>
 
-    <li ng-class="{'is-active': state.current.name.includes('app.referencePoints') || vm.referencePointsMenu}"
+    <li data-ng-class="{'is-active': state.current.name.includes('app.referencePoints') || vm.referencePointsMenu}"
         class="sidebar-item">
-        <a ng-click="vm.referencePointsMenu = !vm.referencePointsMenu"
+        <a data-ng-click="vm.referencePointsMenu = !vm.referencePointsMenu"
             class="sidebar-link">
             <span class="sidebar-icon">
                 <i class="fa fa-map-pin" aria-hidden="true"></i>
@@ -84,8 +84,8 @@
         </a>
         <ul class="sidebar-subnav">
             <li  class="sidebar-item">
-                <a ng-class="{'is-active': state.current.name.includes('app.referencePoints')}"
-                    ui-sref="app.referencePoints"
+                <a data-ng-class="{'is-active': state.current.name.includes('app.referencePoints')}"
+                    data-ui-sref="app.referencePoints"
                     href="#/referencePoints"
                     class="sidebar-sublink">
                     <span class="sidebar-sublink-text">Pontos de Ref.</span>

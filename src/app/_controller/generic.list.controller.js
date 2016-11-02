@@ -7,7 +7,7 @@
 
 
   /*@ngInject*/
-  function GenericListController($state, vm, service, NotificationService) {
+  function GenericListController($state, $window, vm, service, NotificationService) {
     vm.q = $state.params.q;
 
     vm.remove = remove;
@@ -27,6 +27,10 @@
 
     function remove($event, data) {
       $event.stopPropagation();
+
+      if(!$window.confirm('Deseja excluir?')) {
+        return false;
+      }
 
       console.log('data.id', data._id);
 

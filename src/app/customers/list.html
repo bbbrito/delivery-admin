@@ -30,14 +30,15 @@
     <tr>
       <td>Nome</td>
       <td>Telefones</td>
+      <td></td>
     </tr>
   </thead>
   <tbody>
     <tr class="pointer"
-      ng-repeat="customer in vm.data.items"
-      ng-click="state.go('app.customer', { id: customer._id })">
-      <td>{{ customer.givenName }}</td>
-      <td>{{ customer.telephone }}</td>
+      ng-repeat="customer in vm.data.items">
+      <td ng-click="state.go('app.customer', { id: customer._id })">{{ customer.givenName }}</td>
+      <td ng-click="state.go('app.customer', { id: customer._id })">{{ customer.telephone }}</td>
+      <td><i class="fa fa-trash" ng-click="vm.remove($event, customer)"></i></td>
     </tr>
   </tbody>
 </table>
