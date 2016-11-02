@@ -32,7 +32,7 @@
       },
       remove: function(id) {
         return HTTPService
-          .remove('/api/' + this.endpoint + '/' + id)
+          .delete('/api/' + this.endpoint + '/' + id)
           .then(HTTPService.handleError);
       }
     };

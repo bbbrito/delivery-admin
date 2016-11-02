@@ -31,8 +31,7 @@
       <td>Nome</td>
       <td>Total</td>
       <td>Data da entrega</td>
-      <td>Bairro</td>
-      <td>Entregador</td>
+      <td></td>
     </tr>
   </thead>
   <tbody>
@@ -42,8 +41,7 @@
       <td>{{ order.customer.givenName }}</td>
       <td>{{ order.payment.total | currency }}</td>
       <td>{{ order.delivery.date | date:'dd/MM/yyyy HH:mm' }}</td>
-      <td>{{ order.shippingAddress.addressLocality }}</td>
-      <td>{{ order.delivery.courier }}</td>
+      <td><i class="fa fa-trash" ng-click="vm.remove($event, order)"></i></td>
     </tr>
   </tbody>
 </table>
