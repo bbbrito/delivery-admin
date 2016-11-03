@@ -43,12 +43,13 @@
   </tbody>
 </table>
 
+<p><b>Total:</b> {{ vm.data._metadata.total }}</p>
 <ul uib-pagination
   previous-text="&lsaquo;"
   next-text="&rsaquo;"
   last-text="&raquo;"
   force-ellipses="true"
-  max-size="9"
+  max-size="5"
   items-per-page="10"
   total-items="vm.data._metadata.total"
   ng-if="vm.data._metadata.total > vm.data._metadata.perPage"
