@@ -32,8 +32,6 @@
         return false;
       }
 
-      console.log('data.id', data._id);
-
       service.remove(data._id)
         .then(_fetch)
         .catch(NotificationService.error);

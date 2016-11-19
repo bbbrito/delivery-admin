@@ -25,9 +25,7 @@
           vm.data[1] = response.data.map(function(i){
             return i.count
           });
-
-          console.log(vm.data, vm.labels, response.data);
-        })
+        });
 
       return vm;
     }

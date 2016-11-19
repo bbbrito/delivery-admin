@@ -7,12 +7,12 @@
 
 
   /*@ngInject*/
-  function ProductListController($state, $controller, RestService) {
+  function ProductListController($state, $window, $controller, RestService) {
     var vm = this;
 
     RestService.endpoint = 'products';
     angular.extend(vm, $controller('GenericListController', {
-        vm: vm, $state: $state, service: RestService
+        vm: vm, $state: $state, $window: $window, service: RestService
       })
     );
 
