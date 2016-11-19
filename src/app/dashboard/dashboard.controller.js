@@ -12,14 +12,18 @@
       HTTPService.get('/api/reports/sales')
         .then(function(response) {
 
-          vm.series = ['Total'];
+          vm.series = ['Valor','Pedidos'];
 
           vm.labels = response.data.map(function(i){
             return i._id.replace(/([^T]+).*/, '$1')
           });
 
-          vm.data = response.data.map(function(i){
+          vm.data = [];
+          vm.data[0] = response.data.map(function(i){
             return i.paymentTotal
+          });
+          vm.data[1] = response.data.map(function(i){
+            return i.count
           });
 
           console.log(vm.data, vm.labels, response.data);
