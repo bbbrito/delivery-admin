@@ -7,24 +7,21 @@
           name="addressLocality"
           class="form-control"
           placeholder="Ex: Osasco"
-          size="50"
           autocomplete="off"
           required
           ng-model="vm.freight.addressLocality"
-          ng-minlength="3"
-          ng-keyup="vm.freight.addressLocality=vm.freight.addressLocality.toUpperCase()"
-          maxlength="10">
+          ng-keyup="vm.freight.addressLocality=vm.freight.addressLocality.toUpperCase()">
     </div>
     <div class="col-md-4 col-sm-6 form-group">
       <label>Valor</label>
       <input
           type="tel"
-          name="value"
+          name="price"
           class="form-control"
           placeholder="Ex: R$ 5,00"
           autocomplete="off"
           required
-          ng-model="vm.freight.value"
+          ng-model="vm.freight.price"
           ui-money-mask>
     </div>
 

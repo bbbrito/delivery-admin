@@ -7,7 +7,7 @@
         <input
           type="text"
           id="search-input"
-          placeholder="CEP"
+          placeholder="Bairro"
           autocomplete="off"
           name="search"
           ng-model="vm.q"
@@ -37,7 +37,7 @@
       ng-repeat="freight in vm.data.items"
       ng-click="state.go('app.freight', { id: freight._id })">
       <td>{{ freight.addressLocality }}</td>
-      <td>{{ freight.value }}</td>
+      <td>{{ freight.price | currency }}</td>
     </tr>
   </tbody>
 </table>
