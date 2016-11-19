@@ -19,7 +19,7 @@
       }
     })
     .state('app.map', {
-      url: '/map',
+      url: '/map?size?',
       controller: 'OrderMapController',
       controllerAs: 'vm',
       templateUrl: '/orders/map.html',

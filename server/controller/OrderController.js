@@ -9,22 +9,24 @@ let OrderController = {
   list: function(request, response, next) {
     let query = {};
     let page = parseInt(request.query.page || 1, 10);
+    let per_page = parseInt(request.query.size || PER_PAGE, 10);
 
     if (request.query.q) {
       let search = new RegExp(request.query.q, 'i');
-      query = {
-        $or: [
+      query.$or = [
           { 'customer.givenName': search }
-        ]
-      };
+        ];
+    }
+    if (request.query.location) {
+      query['shippingAddress.location'] = { $exists: 1 };
     }
     debug('query', query);
 
     bluebird.all([
       repository.find(query)
         .sort({ 'delivery.date': -1 })
-        .limit(PER_PAGE)
-        .skip(PER_PAGE * (page - 1)),
+        .limit(per_page)
+        .skip(per_page * (page - 1)),
       repository.count(query)
     ])
     .then(function(results) {
@@ -35,7 +37,7 @@ let OrderController = {
         _metadata: {
           size: (result || []).length,
           total: count,
-          perPage: PER_PAGE,
+          perPage: per_page,
           page: page
         }
       };

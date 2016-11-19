@@ -15,7 +15,7 @@ describe('order.map.controller', function () {
 
   it('#init', function() {
     $httpBackend
-      .when('GET', '/api/orders')
+      .when('GET', /\/\api\/orders/)
       .respond(200, { items: [ORDER] });
 
     var controller = $controller('OrderMapController', { $scope: $scope });

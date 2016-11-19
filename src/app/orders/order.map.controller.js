@@ -22,7 +22,9 @@
     };
 
 
-    OrderService.list()
+    console.log($state.params.size);
+
+    OrderService.list({ location: true, size: $state.params.size || 5 })
       .then(function(response) {
         var data = response.data;
 
