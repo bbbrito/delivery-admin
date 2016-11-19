@@ -5,6 +5,7 @@ let router              = require('express').Router(),
 
 
 router.get('/', FreightController.list);
+router.get('/search', FreightController.search);
 router.get('/:_id', FreightController.byId);
 router.post('/', FreightController.create);
 router.put('/:_id', FreightController.update);

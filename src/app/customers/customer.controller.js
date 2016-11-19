@@ -7,7 +7,7 @@
 
 
   /*@ngInject*/
-  function CustomerController($state, RestService, PostalCodeService, NotificationService, CustomerService, OrderService, ProductService, $window) {
+  function CustomerController($state, RestService, PostalCodeService, NotificationService, CustomerService, OrderService, ProductService, HTTPService, $window) {
     var vm = this;
     var id = $state.params.id;
 
@@ -26,7 +26,15 @@
     vm.deliveryDateOptions = OrderService.getDateOptions();
 
     if (id) {
-      _byId(id);
+      _byId(id)
+        .then(function(customer) {
+          if (!customer || !customer.address) {
+            return false;
+          }
+
+          var locality = customer.address.addressLocality + ',' + customer.address.district;
+          _fetchFreight(locality)
+        });
     }
     _fetchProducts();
     vm.order = {
@@ -104,11 +112,13 @@
      * private
      */
     function _byId(id) {
-      RestService.byId(id)
+      return RestService.byId(id)
         .then(function(response) {
           vm.customer = response.data;
           vm.customer.birthDate = CustomerService.normalizeBirthDate(vm.customer.birthDate);
           vm.disableAddressFields = !!(vm.customer.address && vm.customer.address.streetAddress);
+
+          return vm.customer;
         })
         .catch(NotificationService.error);
     }
@@ -121,6 +131,16 @@
           vm.gifts = angular.copy(data);
         })
         .catch(NotificationService.error)
+    }
+
+    function _fetchFreight(locality) {
+      return HTTPService.get('/api/freights/search', { locality: locality })
+        .then(HTTPService.handleError)
+        .then(function(response) {
+          var data = response.data;
+
+          vm.order.delivery.price = data.price;
+        });
     }
 
     return vm;

@@ -46,6 +46,32 @@ let FreightController = {
     })
     .catch(next);
   },
+  search: function(request, response, next) {
+    let locality = request.query.locality;
+
+    if (!locality) {
+      let err = new Error('locality param not defined');
+      err.status = 400;
+      return next(err);
+    }
+    let query = locality.split(',').map(i => {
+      return { addressLocality: i }
+    });
+
+    repository.findOne({ $or: query })
+    .then(function(result) {
+      if (!result) {
+        let err = new Error('freight not found');
+        err.status = 404;
+        throw err;
+      }
+      return result;
+    })
+    .then(function(result) {
+      response.json(result);
+    })
+    .catch(next);
+  },
   byId: function(request, response, next) {
     let _id = request.params._id;
     repository.findOne({ _id: _id })
