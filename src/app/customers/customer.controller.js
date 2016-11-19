@@ -32,7 +32,7 @@
             return false;
           }
 
-          var locality = customer.address.addressLocality + ',' + customer.address.district;
+          var locality = _concatLocality(customer.address);
           _fetchFreight(locality)
         });
     }
@@ -103,6 +103,11 @@
           vm.customer.address = angular.extend(vm.customer.address, data);
           vm.customer.address.postalCode = postalCode;
           vm.disableAddressFields = !!data.streetAddress;
+
+          return vm.customer.address;
+        })
+        .then(function(address) {
+          _fetchFreight(_concatLocality(address))
         })
         .catch(function() {
           vm.disableAddressFields = false;
@@ -111,6 +116,17 @@
     /**
      * private
      */
+    function _concatLocality(address) {
+      var result = []
+
+      if (address.addressLocality)
+        result = result.concat(address.addressLocality)
+      if (address.district)
+        result = result.concat(address.district);
+
+      return result.join(',');
+    }
+
     function _byId(id) {
       return RestService.byId(id)
         .then(function(response) {
@@ -134,6 +150,10 @@
     }
 
     function _fetchFreight(locality) {
+      if (!locality) {
+        return false;
+      }
+
       return HTTPService.get('/api/freights/search', { locality: locality })
         .then(HTTPService.handleError)
         .then(function(response) {

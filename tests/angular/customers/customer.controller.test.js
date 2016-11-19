@@ -107,6 +107,9 @@ describe('customer.controller', function () {
     $httpBackend
       .when('GET', '/api/postalcodes/01310000')
       .respond(200, POSTAL_CODE);
+    $httpBackend
+      .when('GET', '/api/freights/search?locality=SP,SP')
+      .respond(200, {});
 
     var controller = $controller('CustomerController', {});
     controller.findByPostalCode('01310000');
