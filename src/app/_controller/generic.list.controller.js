@@ -12,7 +12,7 @@
 
     vm.remove = remove;
 
-    _fetch({ q: vm.q, page: $state.params.page });
+    _fetch({ q: vm.q, page: $state.params.page, size: $state.params.size });
 
     /**
      * private

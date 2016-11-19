@@ -21,25 +21,23 @@
     </div>
 </form>
 
-<button class="btn btn-secondary" ng-click="state.go('app.referencePoint')">+ Novo</button>
+<button class="btn btn-secondary" ng-click="state.go('app.freight')">+ Novo</button>
 
-<p ng-if="!vm.data.items.length">Nenhum ponto de referência encontrado</p>
+<p ng-if="!vm.data.items.length">Nenhum frete cadastrado</p>
 
 <table class="table" ng-if="vm.data.items.length">
   <thead>
     <tr>
-      <td>CEP</td>
-      <td>Número</td>
-      <td>Ponto de Referência</td>
+      <td>Bairro</td>
+      <td>Valor</td>
     </tr>
   </thead>
   <tbody>
     <tr class="pointer"
-      ng-repeat="referencePoint in vm.data.items"
-      ng-click="state.go('app.referencePoint', { id: referencePoint._id })">
-      <td>{{ referencePoint.postalCode }}</td>
-      <td>{{ referencePoint.number }}</td>
-      <td>{{ referencePoint.referencePoint }}</td>
+      ng-repeat="freight in vm.data.items"
+      ng-click="state.go('app.freight', { id: freight._id })">
+      <td>{{ freight.addressLocality }}</td>
+      <td>{{ freight.value }}</td>
     </tr>
   </tbody>
 </table>

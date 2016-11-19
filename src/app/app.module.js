@@ -18,6 +18,7 @@
       'app.generic',
       'app.customers',
       'app.dashboard',
+      'app.freights',
       'app.orders',
       'app.products',
       'app.referencePoints',

@@ -1,0 +1,40 @@
+<form name="vm.freightForm" ng-submit="vm.save(vm.freight)">
+  <fieldset class="row">
+    <div class="col-md-4 col-sm-6 form-group">
+      <label>CEP</label>
+      <input
+          type="tel"
+          name="addressLocality"
+          class="form-control"
+          placeholder="Ex: Osasco"
+          size="50"
+          autocomplete="off"
+          required
+          ng-model="vm.freight.addressLocality"
+          ng-minlength="3"
+          ng-keyup="vm.freight.addressLocality=vm.freight.addressLocality.toUpperCase()"
+          maxlength="10">
+    </div>
+    <div class="col-md-4 col-sm-6 form-group">
+      <label>Valor</label>
+      <input
+          type="tel"
+          name="value"
+          class="form-control"
+          placeholder="Ex: R$ 5,00"
+          autocomplete="off"
+          required
+          ng-model="vm.freight.value"
+          ui-money-mask>
+    </div>
+
+  </fieldset>
+  <fieldset class="row">
+    <div class="col-md-12">
+      <input type="submit"
+            ng-disabled="vm.freightForm.$invalid"
+            class="btn btn-primary"
+            value="Salvar" />
+    </div>
+  </fieldset>
+</form>

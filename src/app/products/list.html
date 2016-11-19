@@ -42,7 +42,7 @@
   </tbody>
 </table>
 
-<p><b>Total:</b> {{ vm.data._metadata.total }}</p>
+<p ng-if="vm.data._metadata.total"><b>Total:</b> {{ vm.data._metadata.total }}</p>
 <ul uib-pagination
   previous-text="&lsaquo;"
   next-text="&rsaquo;"

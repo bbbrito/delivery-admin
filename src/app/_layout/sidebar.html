@@ -83,7 +83,15 @@
             </span>
         </a>
         <ul class="sidebar-subnav">
-            <li  class="sidebar-item">
+            <li class="sidebar-item">
+                <a data-ng-class="{'is-active': state.current.name.includes('app.freights')}"
+                    data-ui-sref="app.freights"
+                    href="#/freights"
+                    class="sidebar-sublink">
+                    <span class="sidebar-sublink-text">Frete</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
                 <a data-ng-class="{'is-active': state.current.name.includes('app.referencePoints')}"
                     data-ui-sref="app.referencePoints"
                     href="#/referencePoints"
