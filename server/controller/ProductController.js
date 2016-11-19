@@ -23,7 +23,7 @@ let ProductController = {
     debug('query', query);
 
     bluebird.all([
-      repository.find(query).limit(size).skip(size * (page - 1)),
+      repository.find(query).limit(size).skip(size * (page - 1)).sort({ type: -1, _id: 1 }),
       repository.count(query)
     ])
     .then(function(results) {
