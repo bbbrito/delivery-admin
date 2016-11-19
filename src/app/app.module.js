@@ -8,6 +8,7 @@
       'ngMap',
 
       'pascalprecht.translate',
+      'chart.js',
 
       'ui.router',
       'ui.bootstrap',

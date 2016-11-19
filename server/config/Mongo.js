@@ -1,7 +1,7 @@
 'use strict';
 
-let mongoose  = require('mongoose'),
-    debug     = require('debug')('delivery-admin:config:mongoose'),
+let mongojs  = require('mongojs'),
+    debug     = require('debug')('delivery-admin:config:mongo'),
     config    = require('config');
 
 function _connection(vars) {
@@ -17,11 +17,7 @@ function _connection(vars) {
 }
 
 
-mongoose.Promise = require('bluebird');
-mongoose.connect(_connection(process.env));
-mongoose.set('debug', true);
-
-let db = mongoose.connection;
+let db = mongojs(_connection(process.env));
 /* istanbul ignore next */
 db.on('error', function(err) {
   debug(err);
@@ -31,4 +27,4 @@ db.once('open', function (callback) {
   debug('connected to mongodb');
 });
 
-module.exports = mongoose;
+module.exports = db;

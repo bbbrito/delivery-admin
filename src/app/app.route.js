@@ -42,8 +42,7 @@
     })
     .state('app.dashboard', {
       url: '/dashboard',
-      controller: 'DashboardController',
-      controllerAs: 'vm',
+      controller: 'DashboardController as vm',
       templateUrl: '/dashboard/dashboard.html',
       data : {
         title: 'Dashboard'

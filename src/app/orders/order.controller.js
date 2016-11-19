@@ -7,13 +7,14 @@
 
 
   /*@ngInject*/
-  function OrderController($state, RestService, ProductService, NotificationService, CustomerService, OrderService) {
+  function OrderController($state, $window, RestService, ProductService, NotificationService, CustomerService, OrderService) {
     var vm = this;
     var id = $state.params.id;
 
     RestService.endpoint = 'orders';
 
     vm.order = {};
+    vm.print = print;
 
     if (id) {
       _byId(id);
@@ -21,6 +22,9 @@
 
     vm.dateOptions = OrderService.getDateOptions();
 
+    function print() {
+      $window.print();
+    }
     /**
      * private
      */
