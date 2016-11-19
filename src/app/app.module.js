@@ -9,6 +9,7 @@
 
       'pascalprecht.translate',
       'chart.js',
+      'idf.br-filters',
 
       'ui.router',
       'ui.bootstrap',

@@ -20,13 +20,13 @@
       <tr>
         <td>
           <b>{{ vm.order.customer.givenName }} {{ vm.order.customer.familyName }}</b>
-          {{ vm.order.customer.telephone || vm.order._customer.telephone }}<br/>
+          {{ (vm.order.customer.telephone || vm.order._customer.telephone) | brPhoneNumber }}<br/>
         </td>
         <tr>
           <td>{{ vm.order.shippingAddress.addressLocality }}</td>
         </tr>
         <tr>
-          <td>{{ vm.order.shippingAddress.postalCode }} - {{ vm.order.shippingAddress.district }}, {{ vm.order.shippingAddress.addressRegion }}</td>
+          <td>{{ vm.order.shippingAddress.postalCode | brCep }} - {{ vm.order.shippingAddress.district }}, {{ vm.order.shippingAddress.addressRegion }}</td>
         </tr>
         <tr>
           <td>{{ vm.order.shippingAddress.streetAddress }}</td>

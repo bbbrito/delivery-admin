@@ -21,10 +21,7 @@
       type: 'poly'
     };
 
-
-    console.log($state.params.size);
-
-    OrderService.list({ location: true, size: $state.params.size || 5 })
+    OrderService.list({ location: true, size: $state.params.size || 10 })
       .then(function(response) {
         var data = response.data;
 
