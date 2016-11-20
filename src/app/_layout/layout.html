@@ -11,5 +11,9 @@
       <strong>Success!</strong> Indicates a successful or positive action.
     </p>
 
-  <article class="content" data-ui-view id="view"></article>
+  <article class="content"
+    data-ng-class="{'content-map': state.current.name == 'app.map'}"
+    data-ui-view
+    id="view">
+  </article>
 </main><!-- .main -->
