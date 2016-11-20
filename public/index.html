@@ -8,7 +8,10 @@
   <link href="/favicon.ico" type="image/x-icon" rel="icon">
   <link href="/favicon.ico" type="image/x-icon" rel="shortcut icon" >
 </head>
-<body data-ng-app="app" data-ng-controller="AppController">
+<body
+  class="{{ state.current.name.replace('.', '-') }}"
+  data-ng-app="app"
+  data-ng-controller="AppController">
 
 <div class="app" data-ui-view></div>
 
