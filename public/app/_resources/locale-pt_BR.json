@@ -8,7 +8,7 @@
   "order": "Pedido",
   "product": "Produto",
   "referencePoint": "Ponto de Referência",
-  "freihgt": "Frete",
+  "freight": "Frete",
 
   "DEBIT_CARD": "Débito",
   "CREDIT_CARD": "Crédito",
