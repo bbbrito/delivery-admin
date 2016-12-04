@@ -31,6 +31,7 @@
       <td>CEP</td>
       <td>Número</td>
       <td>Ponto de Referência</td>
+      <td></td>
     </tr>
   </thead>
   <tbody>
@@ -40,6 +41,7 @@
       <td>{{ referencePoint.postalCode }}</td>
       <td>{{ referencePoint.number }}</td>
       <td>{{ referencePoint.referencePoint }}</td>
+      <td><i class="fa fa-trash" ng-click="vm.remove($event, referencePoint)"></i></td>
     </tr>
   </tbody>
 </table>

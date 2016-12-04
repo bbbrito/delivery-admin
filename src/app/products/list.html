@@ -30,6 +30,7 @@
     <tr>
       <td>Nome</td>
       <td>Preço</td>
+      <td></td>
     </tr>
   </thead>
   <tbody>
@@ -38,6 +39,7 @@
       ng-click="state.go('app.product', { id: product._id })">
       <td>{{ product.name }}</td>
       <td>{{ product.price | currency }}</td>
+      <td><i class="fa fa-trash" ng-click="vm.remove($event, product)"></i></td>
     </tr>
   </tbody>
 </table>
