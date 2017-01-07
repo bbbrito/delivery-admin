@@ -140,7 +140,7 @@
     }
 
     function _fetchProducts() {
-      return ProductService.list({ attr: 'items', size: 30 })
+      return ProductService.list({ attr: 'items', size: 50 })
         .then(function(response) {
           var data = response.data;
           vm.items = data;

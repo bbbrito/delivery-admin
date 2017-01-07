@@ -15,7 +15,7 @@ describe('customer.controller', function () {
     NotificationService = _NotificationService_;
 
     $httpBackend
-      .when('GET', '/api/products?attr=items&size=30')
+      .when('GET', /\/api\/products\?attr=items&size=\d+/)
       .respond(200, CUSTOMER);
   }));
 
