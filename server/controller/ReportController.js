@@ -7,7 +7,18 @@ let tzOffset = -3;
 
 let ReportController = {
   total: function(request, response, next) {
+    var start = new Date();
+    start.setMonth(start.getMonth() - 3);
+    start.setDate(1);
+    start.setHours(0);
+    start.setMinutes(0);
+    start.setSeconds(0);
+    start.setMilliseconds(0);
+
     let pipeline = [
+      {
+        "$match": { "delivery.date": { "$gte": start } }
+      },
       {
         $group:{
           _id: _getIdGroup(),
@@ -35,7 +46,7 @@ let ReportController = {
   },
 
   sales: function(request, response, next) {
-    let start = new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 7);
+    let start = new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 8);
 
     let end = new Date();
     end.setDate(end.getDate() + 1);
