@@ -3,14 +3,22 @@
 let debug = require('debug')('delivery-admin:controller:postalcode');
 let repository = require('../repository/ReportRepository');
 
+let tzOffset = -3;
+
 let ReportController = {
   total: function(request, response, next) {
     let pipeline = [
       {
         $group:{
-          _id: { month: { $month: "$delivery.date" }, year: { $year: "$delivery.date" } },
+          _id: _getIdGroup(),
           total: { $sum: "$payment.total" }
         },
+      },
+      {
+        $group: {
+          _id: { month: { $month: "$_id" }, year: { $year: "$_id" } },
+          total: { $sum: "$total" }
+        }
       },
       {
         $sort: { "_id.year": 1, "_id.month": 1, }
@@ -27,7 +35,6 @@ let ReportController = {
   },
 
   sales: function(request, response, next) {
-    let tzOffset = -3;
     let start = new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 7);
 
     let end = new Date();
@@ -42,24 +49,7 @@ let ReportController = {
       },
       {
         "$group": {
-          "_id": {
-            "$add": [
-                { "$subtract": [
-                    { "$add": [
-                        { "$subtract": [ "$delivery.date", new Date(0) ] },
-                        tzOffset * 1000 * 60 * 60
-                    ]},
-                    { "$mod": [
-                        { "$add": [
-                            { "$subtract": [ "$delivery.date", new Date(0) ] },
-                            tzOffset * 1000 * 60 * 60
-                        ]},
-                        1000 * 60 * 60 * 24
-                    ]}
-                ]},
-                new Date(0)
-            ]
-          },
+          "_id": _getIdGroup(),
           "paymentTotal": { "$sum": "$payment.total" },
           "count": { "$sum": 1 }
         }
@@ -80,5 +70,27 @@ let ReportController = {
     });
   }
 };
+
+function _getIdGroup() {
+  return {
+    "$add": [{
+      "$subtract": [{
+          "$add": [
+            { "$subtract": [ "$delivery.date", new Date(0) ] },
+            tzOffset * 1000 * 60 * 60
+          ]}, {
+          "$mod": [{
+            "$add": [
+              { "$subtract": [ "$delivery.date", new Date(0) ] },
+              tzOffset * 1000 * 60 * 60
+            ]},
+            1000 * 60 * 60 * 24
+          ]
+        }]
+      },
+      new Date(0)
+    ]
+  };
+}
 
 module.exports = ReportController;
