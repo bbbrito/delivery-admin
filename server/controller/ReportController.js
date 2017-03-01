@@ -47,9 +47,8 @@ let ReportController = {
 
   byProduct: function(request, response, next) {
     let pipeline = [
-      { $group: { _id: '$items.name' } },
-      { $unwind: '$_id' },
-      { $group: { _id: '$_id', count: { $sum: 1 } } },
+      { $unwind: '$items' },
+      { $group: { _id: '$items.name', count: { $sum: '$items.quantity' } } },
       { $sort: { 'count': -1 } }
     ];
 
