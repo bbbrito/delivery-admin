@@ -45,6 +45,23 @@ let ReportController = {
     });
   },
 
+  byProduct: function(request, response, next) {
+    let pipeline = [
+      { $group: { _id: '$items.name' } },
+      { $unwind: '$_id' },
+      { $group: { _id: '$_id', count: { $sum: 1 } } },
+      { $sort: { 'count': -1 } }
+    ];
+
+    repository.aggregate(pipeline, function(err, result) {
+      if (err) {
+        return next(err);
+      }
+
+      response.json(result);
+    });
+  },
+
   sales: function(request, response, next) {
     let start = new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 8);
 

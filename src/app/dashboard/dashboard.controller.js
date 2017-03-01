@@ -41,6 +41,11 @@
           });
         });
 
+      HTTPService.get('/api/reports/byProduct')
+        .then(function(response) {
+          vm.byProduct = response.data;
+        });
+
       return vm;
     }
 

@@ -6,6 +6,7 @@ let router              = require('express').Router(),
 
 router.get('/sales', ReportController.sales);
 router.get('/total', ReportController.total);
+router.get('/byProduct', ReportController.byProduct);
 
 
 module.exports = router;
