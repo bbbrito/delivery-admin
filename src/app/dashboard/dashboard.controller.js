@@ -9,6 +9,20 @@
     function DashboardController($rootScope, HTTPService) {
       var vm = this;
 
+      HTTPService.get('/api/reports/total')
+        .then(function(response) {
+
+          vm.totalSeries = ['Total','Mês'];
+
+          vm.totalLabels = response.data.map(function(item) {
+            return item._id.month + '/' + item._id.year;
+          });
+
+          vm.total = response.data.map(function(item) {
+            return item.total;
+          });
+        });
+
       HTTPService.get('/api/reports/sales')
         .then(function(response) {
 

@@ -4,6 +4,28 @@ let debug = require('debug')('delivery-admin:controller:postalcode');
 let repository = require('../repository/ReportRepository');
 
 let ReportController = {
+  total: function(request, response, next) {
+    let pipeline = [
+      {
+        $group:{
+          _id: { month: { $month: "$delivery.date" }, year: { $year: "$delivery.date" } },
+          total: { $sum: "$payment.total" }
+        },
+      },
+      {
+        $sort: { "_id.year": 1, "_id.month": 1, }
+      }
+    ];
+
+    repository.aggregate(pipeline, function(err, result) {
+      if (err) {
+        return next(err);
+      }
+
+      response.json(result);
+    });
+  },
+
   sales: function(request, response, next) {
     let tzOffset = -3;
     let start = new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 7);
