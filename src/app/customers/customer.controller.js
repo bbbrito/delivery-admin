@@ -22,6 +22,8 @@
     vm.customer = {
       address: { addressRegion: 'SP' }
     };
+    vm.filterProducts = { type: '!Strudel' };
+
     vm.saveCustomer = saveCustomer;
     vm.saveOrder = saveOrder;
     vm.findByPostalCode = findByPostalCode;

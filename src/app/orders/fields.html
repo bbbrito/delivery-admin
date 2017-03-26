@@ -1,6 +1,14 @@
 
   <legend>Pedido</legend>
   <div class="order-items-table">
+
+    <select class="form-control" ng-model="vm.filterProducts.type">
+      <option value="!Strudel">Empanadas</option>
+      <option value="Strudel">Strudel</option>
+      <option value="Doce">Doce</option>
+      <option value="Bebida">Bebida</option>
+    </select>
+
     <table class="table" border="0" cellspacing="0" cellpadding="0">
       <thead>
         <tr>
@@ -11,7 +19,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="product in vm.items">
+        <tr ng-repeat="product in vm.items | filter:vm.filterProducts">
           <td><label for="item-{{ $index }}">{{ product.name }}</label></td>
           <td>
             <input type="tel"
