@@ -46,7 +46,10 @@ let ReportController = {
   },
 
   byProduct: function(request, response, next) {
+    let start = new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 8);
+
     let pipeline = [
+      { "$match": { "delivery.date": { "$gte": start } } },
       { $unwind: '$items' },
       { $group: { _id: '$items.name', count: { $sum: '$items.quantity' } } },
       { $sort: { 'count': -1 } }

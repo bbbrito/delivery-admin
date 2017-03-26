@@ -15,6 +15,8 @@ describe('dashboard.controller', function () {
 
   it('#init', function() {
     $httpBackend.when('GET', '/api/reports/sales').respond(200, [SALES_REPORT]);
+    $httpBackend.when('GET', '/api/reports/total').respond(200, TOTAL_REPORT);
+    $httpBackend.when('GET', '/api/reports/byProduct').respond(200, []);
     var controller = $controller('DashboardController', { $scope: $scope });
 
     $httpBackend.flush();

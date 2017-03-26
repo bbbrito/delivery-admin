@@ -54,10 +54,13 @@ var FactoryGirl = {
     }
   },
   postalCode: function() {
-    return ADDRESS
+    return ADDRESS;
   },
   salesReport: function() {
-    return { _id: '2016-11-19T12:00', paymentTotal: 10, count: 2 }
+    return { _id: '2016-11-19T12:00', paymentTotal: 10, count: 2 };
+  },
+  totalReport: function() {
+    return [];
   }
 };
 
@@ -99,6 +102,7 @@ var before = function($rootScope, _$httpBackend_, _$localStorage_) {
   REFERENCE_POINT   = FactoryGirl.referencePoint();
   POSTAL_CODE       = FactoryGirl.postalCode();
   SALES_REPORT      = FactoryGirl.salesReport();
+  TOTAL_REPORT      = FactoryGirl.totalReport();
 
   EVENT = {
     stopPropagation: function() {}
