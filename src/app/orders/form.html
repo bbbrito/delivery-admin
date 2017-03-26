@@ -1,6 +1,10 @@
 <form name="vm.orderForm" ng-submit="vm.saveOrder(vm.order, vm.customer)">
 
-  <div ng-include="'/orders/fields.html'" ng-if="vm.order._id"></div>
+  <fieldset class="row">
+    <div class="col-md-12 col-sm-12"
+      ng-include="'/orders/fields.html'"
+      ng-if="vm.order._id"></div>
+  </fieldset>
 
   <fieldset class="row" ng-if="vm.order._id">
     <div class="col-md-12">

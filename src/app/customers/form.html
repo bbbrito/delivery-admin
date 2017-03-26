@@ -14,7 +14,14 @@
 
 <form name="vm.orderForm" ng-submit="vm.saveOrder(vm.customer, vm.order, vm.items, vm.gifts)">
 
-  <div ng-include="'/orders/fields.html'"></div>
+  <fieldset class="row">
+    <div class="col-md-6 col-sm-6"
+      ng-include="'/orders/fields.html'"></div>
+
+    <div class="col-md-6 col-sm-6 order-map"
+      ng-include="'/orders/map.html'"
+      ng-if="vm.markers[0].position[0]"></div>
+  </fieldset>
 
   <fieldset class="row">
     <div class="col-md-12">

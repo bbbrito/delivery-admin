@@ -7,11 +7,17 @@
 
 
   /*@ngInject*/
-  function CustomerController($state, RestService, PostalCodeService, NotificationService, CustomerService, OrderService, ProductService, HTTPService, $window) {
+  function CustomerController($state, $window, RestService, PostalCodeService, NotificationService, CustomerService, OrderService, ProductService, HTTPService, MapService) {
     var vm = this;
     var id = $state.params.id;
 
     RestService.endpoint = 'customers';
+
+
+    vm.googleMapsUrl = MapService.googleMapsUrl;
+    vm.zoom = 14;
+    vm.organization = MapService.organization;
+    vm.shape = MapService.shape;
 
     vm.customer = {
       address: { addressRegion: 'SP' }
@@ -21,6 +27,8 @@
     vm.findByPostalCode = findByPostalCode;
     vm.findReferencePoint = findReferencePoint;
     vm.changePaymentType = changePaymentType;
+    vm.print = print;
+
 
     vm.dateOptions = CustomerService.getDateOptions();
     vm.deliveryDateOptions = OrderService.getDateOptions();
@@ -33,12 +41,18 @@
           }
 
           var locality = _concatLocality(customer.address);
-          _fetchFreight(locality)
+          _fetchFreight(locality);
+          _getLocation(customer.address);
         });
     }
     _fetchProducts();
     vm.order = {
       delivery: OrderService.getDeliveryTime()
+    }
+
+
+    function print() {
+      $window.print();
     }
 
     function saveCustomer(customer) {
@@ -78,10 +92,7 @@
       if (!shippingAddress.postalCode || shippingAddress.postalCode.length < 8 || !shippingAddress.number) {
         return false;
       }
-      PostalCodeService.getLocation(shippingAddress)
-        .then(function(location) {
-          vm.customer.address.location = location;
-        });
+      _getLocation(shippingAddress);
 
       PostalCodeService.findReferencePoint(shippingAddress)
         .then(function(response) {
@@ -161,6 +172,19 @@
 
           vm.order.delivery.price = data.price;
         });
+    }
+    function _getLocation(shippingAddress) {
+      PostalCodeService.getLocation(shippingAddress)
+        .then(function(location) {
+          vm.customer.address.location = location;
+
+          _setMaker(location);
+        });
+    }
+
+    function _setMaker(location) {
+      vm.markers = [MapService.getMarker(vm.customer.givenName, location)];
+      vm.center = [location.lat, location.lng];
     }
 
     return vm;

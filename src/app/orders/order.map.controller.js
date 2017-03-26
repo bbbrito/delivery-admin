@@ -7,19 +7,14 @@
 
 
   /*@ngInject*/
-  function OrderMapController($state, OrderService) {
+  function OrderMapController($state, OrderService, MapService) {
     var vm = this;
 
-    vm.googleMapsUrl = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB7BimdwO2vhjoXDyKWKkWyuzrQsA4TwgM';
-    vm.zoom = 15;
-    vm.organization = {
-      location: '-23.6024185,-46.7881249',
-      icon: '/assets/images/organization-marker-image.png'
-    };
-    vm.shape = {
-      coords: [1, 1, 1, 20, 18, 20, 18 , 1],
-      type: 'poly'
-    };
+    vm.googleMapsUrl = MapService.googleMapsUrl;
+    vm.zoom = MapService.zoom;
+    vm.organization = MapService.organization;
+    vm.center = MapService.organization.location;
+    vm.shape = MapService.shape;
 
     OrderService.list({ location: true, size: $state.params.size || 10 })
       .then(function(response) {

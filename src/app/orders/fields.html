@@ -1,7 +1,6 @@
 
-<fieldset class="row">
-  <legend class="col-md-12 col-sm-12">Pedido</legend>
-  <div class="col-md-12 col-sm-12 order-items-table">
+  <legend>Pedido</legend>
+  <div class="order-items-table">
     <table class="table" border="0" cellspacing="0" cellpadding="0">
       <thead>
         <tr>
@@ -41,11 +40,9 @@
       </tfoot>
     </table>
   </div>
-</fieldset>
 
-<fieldset class="row">
-  <legend class="col-md-12 col-sm-12">Brinde</legend>
-  <div class="col-md-12 col-sm-12 order-items-table">
+  <legend>Brinde</legend>
+  <div class="order-items-table">
     <table class="table">
       <thead>
         <tr>
@@ -81,10 +78,8 @@
       </tfoot>
     </table>
   </div>
-</fieldset>
 
-<fieldset class="row">
-  <div class="col-md-3 col-sm-3 col-xs-6 form-group">
+  <div class="col-md-6 col-sm-6 col-xs-12 form-group">
     <label>Dia de entrega</label>
 
     <input type="text" class="form-control"
@@ -97,7 +92,7 @@
         show-button-bar="false"
         ng-focus="deliveryDate.opened = true" />
   </div>
-  <div class="col-md-3 col-sm-3 col-xs-6 form-group">
+  <div class="col-md-6 col-sm-6 col-xs-12 form-group">
     <div uib-timepicker
         class="timepicker"
         ng-model="vm.order.delivery.date"
@@ -105,7 +100,7 @@
         meridians="['AM', 'PM']"></div>
 
   </div>
-  <div class="col-md-3 col-sm-3 col-xs-6 form-group">
+  <div class="col-md-6 col-sm-6 col-xs-12 form-group">
     <label>Taxa de entrega</label>
     <input
         type="tel"
@@ -119,7 +114,7 @@
         max="100"
         maxlength="9">
   </div>
-  <div class="col-md-3 col-sm-3 col-xs-6 form-group">
+  <div class="col-md-6 col-sm-6 col-xs-12 form-group">
     <label>Entregador</label>
     <select class="form-control" ng-model="vm.order.delivery.courier">
         <option value="Eduardo">Eduardo</option>
@@ -131,9 +126,8 @@
         <option value="Juliana">Juliana</option>
     </select>
   </div>
-</fieldset>
-<fieldset class="row">
-  <div class="col-md-3 col-sm-3">
+
+  <div class="col-md-6 col-sm-6">
     <label>Forma de Pagamento</label>
     <select class="form-control"
         ng-change="vm.changePaymentType(vm.order.payment)"
@@ -145,7 +139,7 @@
       <option value="TICKET">{{ 'TICKET' | translate }}</option>
     </select>
   </div>
-  <div class="col-md-3 col-sm-3 col-xs-6">
+  <div class="col-md-6 col-sm-6 col-xs-12">
     <label>Desconto</label>
     <input
       type="tel"
@@ -153,13 +147,13 @@
       ui-money-mask
       ng-model="vm.order.payment.discount">
   </div>
-  <div class="col-md-3 col-sm-3 col-xs-6" ng-if="vm.order.payment.paymentType == 'MONEY'">
+  <div class="col-md-6 col-sm-6 col-xs-12" ng-if="vm.order.payment.paymentType == 'MONEY'">
     <label>Pago em Dinheiro</label>
     <input class="form-control"
       ui-money-mask
       ng-model="vm.order.payment.moneyTotal">
   </div>
-  <div class="col-md-3 col-sm-3 col-xs-6" ng-if="vm.order.payment.paymentType == 'MONEY'">
+  <div class="col-md-6 col-sm-6 col-xs-12" ng-if="vm.order.payment.paymentType == 'MONEY'">
     <label>Troco: </label>
     <p class="form-control">
       {{
@@ -169,7 +163,7 @@
       }}
     </p>
   </div>
-  <div class="col-md-3 col-sm-3 col-xs-6">
+  <div class="col-md-6 col-sm-6 col-xs-12">
     <label>Total: </label>
     <p class="form-control">
       {{
@@ -179,4 +173,3 @@
       }}
       </p>
   </div>
-</fieldset>
