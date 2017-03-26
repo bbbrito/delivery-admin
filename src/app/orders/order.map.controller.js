@@ -25,10 +25,7 @@
             return item.shippingAddress.location;
           })
           .map(function(item) {
-            return {
-              label: item.customer.givenName,
-              position: [item.shippingAddress.location.lat, item.shippingAddress.location.lng]
-            }
+            return MapService.getMarker(item.customer.givenName, item.shippingAddress.location);
           });
       });
 
