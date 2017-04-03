@@ -29,7 +29,6 @@
     vm.findByPostalCode = findByPostalCode;
     vm.findReferencePoint = findReferencePoint;
     vm.changePaymentType = changePaymentType;
-    vm.print = print;
 
 
     vm.dateOptions = CustomerService.getDateOptions();
@@ -52,10 +51,6 @@
       delivery: OrderService.getDeliveryTime()
     }
 
-
-    function print() {
-      $window.print();
-    }
 
     function saveCustomer(customer) {
       RestService.save(customer)

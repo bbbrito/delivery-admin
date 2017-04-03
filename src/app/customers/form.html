@@ -23,16 +23,16 @@
       ng-if="vm.markers[0].position[0]"></div>
   </fieldset>
 
+  <div ng-include="'/orders/delivery.fields.html'"></div>
+
   <fieldset class="row">
     <div class="col-md-12">
       <input type="submit"
             ng-disabled="vm.orderForm.$invalid"
             class="btn btn-primary"
-            value="Salvar" />
+            value="Salvar e Imprimir" />
     </div>
   </fieldset>
-
-  <div ng-include="'/orders/delivery.fields.html'"></div>
 </form>
 
 <div ng-include="'/orders/print.html'"></div>
