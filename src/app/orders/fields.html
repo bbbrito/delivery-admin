@@ -32,8 +32,8 @@
           </td>
           <td class="align-right">{{ product.price | currency }}</td>
           <td>
-            <span ng-if="product.quantity">
-            {{ (product.total = (product.quantity || 0) * product.price) | currency }}
+            <span ng-show="product.quantity">
+            {{ product.total = ((product.quantity || 0) * product.price) | currency }}
             </span>
           </td>
         </tr>
