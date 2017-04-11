@@ -6,7 +6,7 @@
   .factory('PostalCodeService', PostalCodeService);
 
   /*@ngInject*/
-  function PostalCodeService(HTTPService) {
+  function PostalCodeService(HTTPService, $q) {
     var service = {
       findReferencePoint: function(shippingAddress) {
         var params = {
@@ -20,8 +20,12 @@
       },
 
       getLocation: function(shippingAddress) {
+        if (Object.keys(shippingAddress).length < 3) {
+          return $q.reject();
+        }
+
         var GMAPS_API = 'https://maps.google.com/maps/api/geocode/json?address=';
-        var address = shippingAddress.streetAddress + ',' + shippingAddress.number;
+        var address = shippingAddress.streetAddress + ',' + shippingAddress.district + ',' + shippingAddress.number;
 
         return HTTPService
           .get(GMAPS_API + address + '&sensor=true', {}, { cache: true })

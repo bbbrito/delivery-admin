@@ -141,7 +141,7 @@ describe('customer.controller', function () {
 
   it('#findReferencePoint', function() {
     $httpBackend
-      .when('GET', 'https://maps.google.com/maps/api/geocode/json?address=Av. Paulista,1000&sensor=true')
+      .when('GET', 'https://maps.google.com/maps/api/geocode/json?address=Av. Paulista,SP,1000&sensor=true')
       .respond(200, { results: [LOCATION] });
     $httpBackend
       .when('GET', '/api/postalcodes/referencePoint?number=1000&postalCode=01310000')

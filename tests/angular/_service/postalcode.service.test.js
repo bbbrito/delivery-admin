@@ -42,12 +42,13 @@ describe('postalcode.service', function () {
 
   it('#getLocation', function() {
     $httpBackend
-      .when('GET', 'https://maps.google.com/maps/api/geocode/json?address=Av. Paulista,1000&sensor=true')
+      .when('GET', 'https://maps.google.com/maps/api/geocode/json?address=Av. Paulista,SP,1000&sensor=true')
       .respond(200, { results: [LOCATION] });
 
     var shippingAddress = {
       streetAddress: 'Av. Paulista',
-      number: 1000
+      number: 1000,
+      district: 'SP'
     };
 
     var result = service.getLocation(shippingAddress);
