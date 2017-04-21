@@ -3,7 +3,7 @@
 let bluebird = require('bluebird');
 let debug = require('debug')('delivery-admin:controller:referencePoint');
 let repository = require('../repository/ReferencePointRepository');
-const PER_PAGE = 10;
+const PER_PAGE = 15;
 
 let ReferencePointController = {
   list: function(request, response, next) {

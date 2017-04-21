@@ -31,7 +31,7 @@
       <td>Nome</td>
       <td>Total</td>
       <td>Data da entrega</td>
-      <td>Bairro</td>
+      <td class="hidden-xs">Bairro</td>
       <td></td>
     </tr>
   </thead>
@@ -41,7 +41,7 @@
       <td ng-click="state.go('app.order', { id: order._id })">{{ order.customer.givenName }}</td>
       <td ng-click="state.go('app.order', { id: order._id })">{{ order.payment.total | currency }}</td>
       <td ng-click="state.go('app.order', { id: order._id })">{{ order.delivery.date | date:'dd/MM HH:mm' }}</td>
-      <td ng-click="state.go('app.order', { id: order._id })">{{ order.shippingAddress.addressLocality }}</td>
+      <td class="hidden-xs" ng-click="state.go('app.order', { id: order._id })">{{ order.shippingAddress.addressLocality }}</td>
       <td><i class="fa fa-trash" ng-click="vm.remove($event, order)"></i></td>
     </tr>
   </tbody>

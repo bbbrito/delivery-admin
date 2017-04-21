@@ -3,7 +3,7 @@
 let bluebird = require('bluebird');
 let debug = require('debug')('delivery-admin:controller:product');
 let repository = require('../repository/ProductRepository');
-const PER_PAGE = 10;
+const PER_PAGE = 15;
 
 let ProductController = {
   list: function(request, response, next) {
