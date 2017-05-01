@@ -31,7 +31,8 @@ let OrderSchema = mongoose.Schema({
     moneyTotal: { type: Number },
     total: { type: Number },
     change: { type: Number },
-    paymentType: { type: String }
+    paymentType: { type: String },
+    payedAt: { type: Date }
   },
   origin: {
     _externalId: { type: String },

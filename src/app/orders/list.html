@@ -28,21 +28,35 @@
 <table class="table" ng-if="vm.data.items.length">
   <thead>
     <tr>
-      <td>Nome</td>
-      <td>Total</td>
-      <td>Data da entrega</td>
-      <td class="hidden-xs">Bairro</td>
-      <td></td>
+      <th>Nome</th>
+      <th>Total</th>
+      <th>Entrega</th>
+      <th class="hidden-xs">Entregador</th>
+      <th class="hidden-xs">Bairro</th>
+      <th class="center">Pago?</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-    <tr class="pointer"
-      ng-repeat="order in vm.data.items">
-      <td ng-click="state.go('app.order', { id: order._id })">{{ order.customer.givenName }}</td>
-      <td ng-click="state.go('app.order', { id: order._id })">{{ order.payment.total | currency }}</td>
-      <td ng-click="state.go('app.order', { id: order._id })">{{ order.delivery.date | date:'dd/MM HH:mm' }}</td>
-      <td class="hidden-xs" ng-click="state.go('app.order', { id: order._id })">{{ order.shippingAddress.addressLocality }}</td>
-      <td><i class="fa fa-trash" ng-click="vm.remove($event, order)"></i></td>
+    <tr
+      ng-repeat="order in vm.data.items track by order._id">
+      <td ng-click="state.go('app.order', { id: order._id })" class="link">{{ order.customer.givenName }}</td>
+      <td>{{ order.payment.total | currency }}</td>
+      <td>{{ order.delivery.date | date:'dd/MM HH:mm' }}</td>
+      <td class="hidden-xs">
+        <select class="form-control"
+          ng-options="item as item for item in vm.couriers"
+          ng-model="order.delivery.courier"
+          ng-change="vm.save(order)"></select>
+      </td>
+      <td class="hidden-xs">{{ order.shippingAddress.addressLocality }}</td>
+      <td class="center">
+        <i class="pointer fa {{ order.payment.payedAt ? 'fa-usd success' : 'fa-ban danger' }}"
+          ng-click="vm.save(order, 'payed')"></i>
+      </td>
+      <td>
+        <i class="fa fa-trash" ng-click="vm.remove($event, order)"></i>
+      </td>
     </tr>
   </tbody>
 </table>
