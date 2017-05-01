@@ -52,7 +52,7 @@
       <td class="hidden-xs">{{ order.shippingAddress.addressLocality }}</td>
       <td class="center">
         <i class="pointer fa {{ order.payment.payedAt ? 'fa-usd success' : 'fa-ban danger' }}"
-          ng-click="vm.save(order, 'payed')"></i>
+          ng-click="vm.payed = !order.payment.payedAt; vm.save(order, vm.payed)"></i>
       </td>
       <td>
         <i class="fa fa-trash" ng-click="vm.remove($event, order)"></i>
