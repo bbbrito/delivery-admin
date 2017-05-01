@@ -33,8 +33,6 @@
         .then(function(response) {
           var data = response.data;
 
-          console.log('data');
-
           NotificationService.success({ title: 'order', message: 'form.saved' });
         })
         .catch(NotificationService.error);
