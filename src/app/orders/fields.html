@@ -40,7 +40,7 @@
       </tbody>
       <tfoot>
         <tr>
-          <td><b>Total:</b></td>
+          <td><b>Subtotal:</b></td>
           <td>{{ vm.items | sum:'quantity' }}</td>
           <td></td>
           <td>{{ vm.order.payment.subtotal = (vm.items | sum:'total') | currency }}</td>
@@ -78,7 +78,7 @@
       </tbody>
       <tfoot>
         <tr>
-          <td><b>Total:</b></td>
+          <td><b>Subtotal:</b></td>
           <td>{{ vm.gifts | sum:'quantity' }}</td>
           <td></td>
           <td>Grátis</td>
