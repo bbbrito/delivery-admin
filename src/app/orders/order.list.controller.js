@@ -20,6 +20,7 @@
 
     vm.couriers = [
       'Eduardo',
+      'Fernando',
       'Edson',
       'Carlos',
       'William',
