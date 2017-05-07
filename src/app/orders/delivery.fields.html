@@ -36,12 +36,9 @@
   </div>
   <div class="col-md-3 col-sm-3 col-xs-12 form-group">
     <label>Entregador</label>
-    <select class="form-control" ng-model="vm.order.delivery.courier">
-        <option value="Eduardo">Eduardo</option>
-        <option value="Edson">Edson</option>
-        <option value="Carlos">Carlos</option>
-        <option value="William">William</option>
-        <option value="Juliana">Juliana</option>
+    <select class="form-control"
+      ng-options="item as item for item in vm.couriers"
+      ng-model="vm.order.delivery.courier">
     </select>
   </div>
 </div>

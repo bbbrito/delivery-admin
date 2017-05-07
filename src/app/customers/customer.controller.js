@@ -7,11 +7,13 @@
 
 
   /*@ngInject*/
-  function CustomerController($state, $window, RestService, PostalCodeService, NotificationService, CustomerService, OrderService, ProductService, HTTPService, MapService) {
+  function CustomerController($state, $window, RestService, PostalCodeService, NotificationService, CustomerService, OrderService, ProductService, HTTPService, MapService, GenericService) {
     var vm = this;
     var id = $state.params.id;
 
     RestService.endpoint = 'customers';
+
+    vm.couriers = GenericService.couriers;
 
 
     vm.googleMapsUrl = MapService.googleMapsUrl;
