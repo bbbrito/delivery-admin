@@ -9,9 +9,10 @@
   function GenericService() {
     var service = {
       couriers: [
-        'Eduardo',
+        'Ronaldo',
         'Fernando',
         'Edson',
+        'Eduardo',
         'Carlos',
         'William',
         'Juliana'
