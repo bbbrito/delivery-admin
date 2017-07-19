@@ -1,19 +1,19 @@
 'use strict';
 
-let gulp          = require('gulp'),
-    gutil         = require('gulp-util'),
-    concat        = require('gulp-concat'),
-    cssnano       = require('gulp-cssnano'),
-    uglify        = require('gulp-uglify'),
-    livereload    = require('gulp-livereload'),
-    ngAnnotate    = require('gulp-ng-annotate'),
-    htmlmin       = require('gulp-htmlmin'),
-    stylus        = require('gulp-stylus'),
-    templateCache = require('gulp-angular-templatecache'),
-    wiredep       = require('wiredep');
+const gulp          = require('gulp');
+const gutil         = require('gulp-util');
+const concat        = require('gulp-concat');
+const cssnano       = require('gulp-cssnano');
+const uglify        = require('gulp-uglify');
+const livereload    = require('gulp-livereload');
+const ngAnnotate    = require('gulp-ng-annotate');
+const htmlmin       = require('gulp-htmlmin');
+const stylus        = require('gulp-stylus');
+const templateCache = require('gulp-angular-templatecache');
+const wiredep       = require('wiredep');
 
-let debug = require('debug')('delivery-admin:gulp');
-let pkg = require('./package.json');
+const debug = require('debug')('delivery-admin:gulp');
+const pkg = require('./package.json');
 
 const DEPENDENCIES = wiredep(pkg.wiredep);
 
