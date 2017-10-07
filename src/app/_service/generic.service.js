@@ -11,8 +11,6 @@
       couriers: [
         'Ronaldo',
         'Fernando',
-        'Edson',
-        'Eduardo',
         'Carlos',
         'William',
         'Juliana'
