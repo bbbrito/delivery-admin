@@ -11,10 +11,10 @@
       couriers: [
         'Daniel',
         'Ronaldo',
+        'Rafael',
         'Fernando',
         'Carlos',
-        'William',
-        'Juliana'
+        'William'
       ]
     };
 
