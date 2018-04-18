@@ -10,9 +10,8 @@
     var service = {
       couriers: [
         'Daniel',
-        'Ronaldo',
         'Rafael',
-        'Fernando',
+        'Rene',
         'Carlos',
         'William'
       ]
