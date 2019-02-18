@@ -8,7 +8,7 @@ let tzOffset = -3;
 let ReportController = {
   total: function(request, response, next) {
     var start = new Date();
-    start.setMonth(start.getMonth() - 3);
+    start.setMonth(start.getMonth() - 6);
     start.setDate(1);
     start.setHours(0);
     start.setMinutes(0);

@@ -8,13 +8,6 @@
   /*@ngInject*/
   function GenericService() {
     var service = {
-      couriers: [
-        'Hercules',
-        'Lucas',
-        'Carlos',
-        'William',
-        'Catarina'
-      ]
     };
 
     return service;

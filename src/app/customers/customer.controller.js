@@ -7,14 +7,20 @@
 
 
   /*@ngInject*/
-  function CustomerController($state, $window, RestService, PostalCodeService, NotificationService, CustomerService, OrderService, ProductService, HTTPService, MapService, GenericService) {
+  function CustomerController($state, $window, RestService, PostalCodeService, NotificationService, CustomerService, OrderService, ProductService, HTTPService, MapService) {
     var vm = this;
     var id = $state.params.id;
 
     RestService.endpoint = 'customers';
 
-    vm.couriers = GenericService.couriers;
 
+    HTTPService
+      .get('/api/couriers')
+      .then(function(result) {
+         vm.couriers = (result.data.items || []).map(function(item) {
+          return item.givenName
+         });
+      });
 
     vm.googleMapsUrl = MapService.googleMapsUrl;
     vm.zoom = 14;
@@ -182,6 +188,7 @@
     }
 
     function _setMaker(location) {
+      if (!location) return;
       vm.markers = [MapService.getMarker(vm.customer.givenName, location)];
       vm.center = [location.lat, location.lng];
     }

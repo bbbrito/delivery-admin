@@ -88,6 +88,9 @@ var before = function($rootScope, _$httpBackend_, _$localStorage_) {
   $httpBackend.when('GET', /app\/_resources\/locale-pt_BR\.json/).respond(200,{
     "customer" : "Cliente"
   });
+  $httpBackend.when('GET', 'app/couriers').respond(200,{
+    "data" : []
+  });
 
   $httpBackend.when('GET', /.*\.html/).respond(200, '');
   $httpBackend.when('GET', /\/version/).respond(200, { version: '1.0.168' });

@@ -32,7 +32,7 @@
           .then(HTTPService.handleError)
           .then(function(response) {
             var data = response.data;
-            return data.results[0].geometry.location;
+            return data.results[0] && data.results[0].geometry.location;
           });
       }
     };

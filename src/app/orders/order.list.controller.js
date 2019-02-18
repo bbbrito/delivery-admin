@@ -7,7 +7,7 @@
 
 
   /*@ngInject*/
-  function OrderListController($state, $controller, RestService, GenericService, NotificationService) {
+  function OrderListController($state, $controller, RestService, HTTPService, NotificationService) {
     var vm = this;
 
 
@@ -18,7 +18,13 @@
       })
     );
 
-    vm.couriers = GenericService.couriers;
+    HTTPService
+      .get('/api/couriers')
+      .then(function(result) {
+         vm.couriers = (result.data.items || []).map(function(item) {
+          return item.givenName
+         });
+      });
 
     function save(order, payed) {
       order.payment.payedAt = payed ? new Date() : null;
