@@ -1,0 +1,79 @@
+'use strict';
+
+let bluebird = require('bluebird');
+let debug = require('debug')('delivery-admin:controller:courier');
+let repository = require('../repository/CourierRepository');
+const PER_PAGE = 15;
+
+let CourierController = {
+  list: function(request, response, next) {
+    let query = {};
+    let page = parseInt(request.query.page || 1, 10);
+
+    bluebird.all([
+      repository.find(query).limit(PER_PAGE).skip(PER_PAGE * (page - 1)).sort({ _id: - 1 }),
+      repository.count(query)
+    ])
+    .then(function(results) {
+      let result = results[0];
+      let count = results[1];
+      let data = {
+        items: result,
+        _metadata: {
+          size: (result || []).length,
+          total: count,
+          perPage: PER_PAGE,
+          page: page
+        }
+      };
+
+      response.json(data);
+    })
+    .catch(next);
+  },
+  byId: function(request, response, next) {
+    let _id = request.params._id;
+    repository.findOne({ _id: _id })
+    .then(function(result) {
+      if (!result) {
+        let err = new Error('courier not found');
+        err.status = 404;
+        throw err;
+      }
+      return result;
+    })
+    .then(function(result) {
+      response.json(result);
+    })
+    .catch(next);
+  },
+  create: function(request, response, next) {
+    let courier = new repository(request.body);
+    courier.save()
+      .then(function(result) {
+        response.status(201).json(result);
+      })
+      .catch(function(err) {
+        err.status = 422;
+        next(err);
+      });
+  },
+  update: function(request, response, next) {
+    let _id = request.params._id;
+    repository.update({ _id: _id }, { $set: request.body })
+    .then(function(result) {
+      response.json(result);
+    })
+    .catch(next);
+  },
+  remove: function(request, response, next) {
+    let _id = request.params._id;
+    repository.remove({ _id: _id })
+    .then(function(err, result) {
+      response.sendStatus(204);
+    })
+    .catch(next);
+  }
+};
+
+module.exports = CourierController;

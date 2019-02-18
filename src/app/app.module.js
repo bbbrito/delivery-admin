@@ -16,6 +16,7 @@
       'ui.utils.masks',
 
       'app.generic',
+      'app.couriers',
       'app.customers',
       'app.dashboard',
       'app.freights',

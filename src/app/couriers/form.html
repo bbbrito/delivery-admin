@@ -1,0 +1,28 @@
+<form name="vm.courier" ng-submit="vm.save(vm.data)">
+
+  <fieldset class="row">
+    <div class="col-md-3 col-sm-6 col-xs-6 form-group">
+      <label>Nome *</label>
+      <input
+          type="text"
+          name="givenName"
+          class="form-control"
+          placeholder="Nome do Entregador"
+          size="50"
+          autocomplete="off"
+          required
+          ng-model="vm.data.givenName"
+          ng-minlength="3"
+          maxlength="50">
+    </div>
+  </fieldset>
+
+  <fieldset class="row">
+    <div class="col-md-12">
+      <input type="submit"
+            ng-disabled="vm.courier.$invalid"
+            class="btn btn-primary"
+            value="Salvar" />
+    </div>
+  </fieldset>
+</form>
