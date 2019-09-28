@@ -29,6 +29,7 @@
   <thead>
     <tr>
       <th>Nome</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -36,6 +37,7 @@
       ng-repeat="item in vm.data.items">
       <td ng-click="state.go('app.courier', { id: item._id })">{{ item.givenName }}</td>
     </tr>
+      <td><i class="fa fa-trash" ng-click="vm.remove($event, item)"></i></td>
   </tbody>
 </table>
 
