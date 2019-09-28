@@ -17,55 +17,53 @@ const pkg = require('./package.json');
 
 const DEPENDENCIES = wiredep(pkg.wiredep);
 
-let css = {
+let cssPath = {
   source: 'src/css/app.css',
   target: 'public/assets/css'
 };
-let js = {
+let jsPath = {
   source: ['src/app/**/*.module.js', 'public/assets/js/templates.min.js', 'src/app/**/*!(module).js'],
   target: 'public/assets/js'
 };
 
 // debug('DEPENDENCIES.js', DEPENDENCIES, DEPENDENCIES.js);
 
-// js.source = DEPENDENCIES.js.concat(js.source);
-css.source = DEPENDENCIES.css.concat(css.source);
+// jsPath.source = DEPENDENCIES.js.concat(jsPath.source);
+cssPath.source = DEPENDENCIES.css.concat(cssPath.source);
 
-
-gulp.task('stylus', function () {
+function stylusCss() {
   return gulp.src('src/css/app.styl')
     .pipe(stylus({
         compress: true
       })
     )
     .pipe(gulp.dest('src/css/'));
-});
+}
 
-
-gulp.task('css', ['stylus'], function () {
-  return gulp.src(css.source)
+function myCss() {
+  return gulp.src(cssPath.source)
     .pipe(cssnano({ discardComments: {removeAll: true} }))
     .pipe(concat('all.min.css'))
-    .pipe(gulp.dest(css.target))
+    .pipe(gulp.dest(cssPath.target))
     .pipe(livereload());
-});
-gulp.task('js:vendor', function() {
+}
+function jsVendor() {
   return gulp.src(DEPENDENCIES.js)
     .pipe(concat('vendors.min.js'))
     .pipe(uglify({ mangle: true }).on('error', gutil.log))
-    .pipe(gulp.dest(js.target));
-})
-gulp.task('js:app', ['js:template'], function() {
-  return gulp.src(js.source)
+    .pipe(gulp.dest(jsPath.target));
+}
+
+function jsApp() {
+  return gulp.src(jsPath.source)
     .pipe(concat('all.min.js'))
     .pipe(ngAnnotate())
     .pipe(uglify({ mangle: true }).on('error', gutil.log))
-    .pipe(gulp.dest(js.target))
+    .pipe(gulp.dest(jsPath.target))
     .pipe(livereload());
-});
+}
 
-
-gulp.task('js:template', function() {
+function jsTemplate() {
   return gulp.src('src/app/**/*.html')
     .pipe(htmlmin({ collapseWhitespace: true }))
     .pipe(templateCache({
@@ -73,18 +71,17 @@ gulp.task('js:template', function() {
       filename: 'templates.min.js'
     }))
     .pipe(uglify())
-    .pipe(gulp.dest(js.target))
+    .pipe(gulp.dest(jsPath.target))
     .pipe(livereload());
-});
+}
 
+const css = gulp.series(stylusCss, myCss);
+const js = gulp.series(jsTemplate, jsApp);
 
-gulp.task('js', ['js:app', 'js:vendor']);
+const build = gulp.parallel(css, js, jsVendor);
+const watch = gulp.parallel(css, js);
 
-gulp.task('default', ['css', 'js']);
-
-gulp.task('watch', function() {
-  livereload.listen();
-  gulp.watch('src/css/**/*.styl', ['css']);
-  gulp.watch('src/app/**/*.js', ['js:app']);;
-  gulp.watch('src/app/**/*.html', ['js:app']);
-});
+exports.css = css;
+exports.js = js;
+exports.watch = watch;
+exports.default = build;

@@ -1,0 +1,9 @@
+{
+  "mongo": {
+    "username": "dragons-api",
+    "password": "UeP-XNS-2vf-nvm",
+    "host": "ds037272.mongolab.com",
+    "port": 37272,
+    "database": "dragons-api"
+  }
+}
